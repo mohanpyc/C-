@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+
+double calc_mpg(double miles, double gallons)
+{
+	double mpg = miles / gallons;
+	return mpg;
+}
+
+double get_drivenMiles() 
+{
+	double drivenMiles;
+	cout <<"Enter Miles Driven : ";
+	cin >> drivenMiles;
+	if (drivenMiles <= 0) {
+		cout << "Miles driven must be greater than zero. Please try again." << endl;
+	drivenMiles = get_drivenMiles();
+	}
+	return drivenMiles;
+}
+
+
+double get_usedGallons()
+{
+	double drivenMiles;
+	cout << "Enter Gallons of Gas Used : ";
+	cin >> drivenMiles;
+	if (drivenMiles <= 0) {
+		cout << "Gallons of gas used must be greater than zero. Please try again." << endl;
+	drivenMiles = get_usedGallons();
+	}
+	return drivenMiles;
+}
+
+int main()
+{
+	cout << "Miles Per Gallon" << endl;
+
+	char choice = 'y';
+	double milesDriven, gallonsUsed, milesPrGal;
+	do {
+		milesDriven = get_drivenMiles();
+		gallonsUsed = get_usedGallons();
+		milesPrGal = calc_mpg(milesDriven, gallonsUsed);
+		cout << "Miles per gallon : " << milesPrGal << endl;
+		cout << "\nPress Y to get entries for another trip or others to quit: ";
+		cin >> choice;
+	} while (toupper(choice) == 'Y');
+
+}
